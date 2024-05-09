@@ -1,15 +1,18 @@
+import argparse
+
 from botnet import Botnet
 
-def display_banner():
+def display_banner(max_threads: int):
     print("=================================")
-    print("=        Botnet Management       =")
+    print("=       Botnet Management       =")
+    print(f"= working_threads: {max_threads}")
     print("=================================")
 
 
 def main_menu(botnet):
     try:
         while True:
-            display_banner()
+            display_banner(botnet.max_threads)
             print("1. Gather Bots")
             print("2. Add Bot")
             print("3. Execute Command")
@@ -18,8 +21,12 @@ def main_menu(botnet):
             choice = input("Enter your choice: ")
 
             if choice == '1':
-                ip_range = input("Enter IP range (e.g., 192.168.1.0/24): ")
-                credentials_file = input("Enter credentials file path: ")
+                ip_range = input("Enter IP range in CIDR-Notation [192.168.1.0/24]: ")
+                if not ip_range:
+                    ip_range = "192.168.1.0/24"
+                credentials_file = input("Enter credentials file path [credentials.txt]: ")
+                if not credentials_file:
+                    credentials_file = "credentials.txt"
                 print("[+] Gathering bots...")
                 botnet.gather_bots(ip_range, credentials_file)
             elif choice == '2':
@@ -46,4 +53,11 @@ def main_menu(botnet):
 
 
 if __name__ == '__main__':
-    main_menu(Botnet())
+    argparse = argparse.ArgumentParser(
+        description="Botnet Management Tool",
+        usage="python3 main.py -t num_thrads",
+        epilog="Botnet Management Tool"
+    )
+    argparse.add_argument('-t', '--threads', type=int, help='Number of threads to use', default=10)
+    args = argparse.parse_args()
+    main_menu(Botnet(args.threads))
