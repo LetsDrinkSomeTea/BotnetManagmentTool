@@ -85,13 +85,13 @@ class Botnet:
             client.session.logout()
             client.session.close()
 
-    def save_clients(self, file):
+    def save_bots(self, file):
         with open(file, 'w') as f:
             for client in self.clients:
                 f.write(f"{client.host}:{client.user}:{client.password}\n")
         print(f"[+] Bots saved to {file}")
 
-    def load_clients(self, file):
+    def load_bots(self, file):
         with open(file, 'r') as f:
             for line in f:
                 host, user, password = line.strip().split(':')

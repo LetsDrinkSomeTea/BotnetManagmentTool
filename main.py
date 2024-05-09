@@ -3,8 +3,10 @@ import argparse
 from botnet import Botnet
 
 def display_banner(max_threads: int):
+    print()
+    print()
     print("=================================")
-    print("=       Botnet Management       =")
+    print("=     Botnet Management Tool    =")
     print(f"= working_threads: {max_threads}")
     print("=================================")
 
