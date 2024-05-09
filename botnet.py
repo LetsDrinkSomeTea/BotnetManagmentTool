@@ -79,3 +79,21 @@ class Botnet:
                 print(f'{client.user}@{client.host}: {client.session.before.decode()}')
         else:
             print("[-] No bots connected.")
+
+    def close(self):
+        for client in self.clients:
+            client.session.logout()
+            client.session.close()
+
+    def save_clients(self, file):
+        with open(file, 'w') as f:
+            for client in self.clients:
+                f.write(f"{client.host}:{client.user}:{client.password}\n")
+        print(f"[+] Bots saved to {file}")
+
+    def load_clients(self, file):
+        with open(file, 'r') as f:
+            for line in f:
+                host, user, password = line.strip().split(':')
+                self.add_client(host, user, password)
+        print(f"[+] Bots loaded from {file}")

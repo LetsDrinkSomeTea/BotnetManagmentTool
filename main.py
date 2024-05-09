@@ -17,7 +17,9 @@ def main_menu(botnet):
             print("2. Add Bot")
             print("3. Execute Command")
             print("4. List Bots")
-            print("5. Exit")
+            print("5. Save Bots to file")
+            print("6. Load Bots from file")
+            print("'q' for Exit")
             choice = input("Enter your choice: ")
 
             if choice == '1':
@@ -43,11 +45,23 @@ def main_menu(botnet):
             elif choice == '4':
                 botnet.list_bots()
             elif choice == '5':
+                file_path = input("Enter file path to save bots [bots.txt]: ")
+                if not file_path:
+                    file_path = "bots.txt"
+                botnet.save_bots(file_path)
+            elif choice == '6':
+                file_path = input("Enter file path to load bots [bots.txt]: ")
+                if not file_path:
+                    file_path = "bots.txt"
+                botnet.load_bots(file_path)
+            elif choice == 'q':
+                botnet.close()
                 print("Exiting...")
                 break
             else:
                 print("Invalid option. Please try again.")
     except KeyboardInterrupt:
+        botnet.close()
         print("Exiting...")
         exit(0)
 
