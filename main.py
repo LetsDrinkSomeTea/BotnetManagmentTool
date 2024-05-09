@@ -54,7 +54,7 @@ def main_menu(botnet):
 
 if __name__ == '__main__':
     argparse = argparse.ArgumentParser(
-        description="Botnet Management Tool",
+        description="Botnet Management Tool for educational purposes only.",
         usage="python3 main.py -t num_thrads",
         epilog="Botnet Management Tool"
     )
