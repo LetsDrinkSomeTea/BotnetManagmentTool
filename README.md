@@ -1,6 +1,6 @@
 # Botnet Management Tool
 
-This project is a Botnet Management Tool developed by Julian Faigle for Aalen University.
+This project is a Botnet Management Tool developed by LetsDrinkSomeTea for Aalen University.
 It Brute Forces a given IP range and tries to connect via SSH. If the connection is successful, the botnet will be able to execute commands on the target machine.
 
 ## Educational Purpose
@@ -16,7 +16,7 @@ Unauthorized access to computer systems is illegal under the Computer Fraud and 
 To use this tool, you need to have Python and pip installed on your system. You can then clone this repository and install the required dependencies using pip.
 
 ```bash
-git clone https://github.com/JulianFaigle/BotnetManagementTool.git
+git clone https://github.com/LetsDrinkSomeTea/BotnetManagementTool.git
 cd BotnetManagementTool
 pip install -r requirements.txt
 ```
