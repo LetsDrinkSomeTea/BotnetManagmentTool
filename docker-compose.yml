@@ -36,3 +36,8 @@ services:
       - "2224:22"
     environment:
       - ROOT_PASSWORD=password3
+
+  depends_on:
+    - victim1
+    - victim2
+    - victim3
