@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  botnet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: botnet
+    volumes:
+      - .:/app
+    command: python3 main.py -t 10
+
+  victim1:
+    image: alpine:latest
+    container_name: victim1
+    command: sh -c "apk add --no-cache openssh && ssh-keygen -A && /usr/sbin/sshd -D"
+    ports:
+      - "2222:22"
+    environment:
+      - ROOT_PASSWORD=password1
+
+  victim2:
+    image: alpine:latest
+    container_name: victim2
+    command: sh -c "apk add --no-cache openssh && ssh-keygen -A && /usr/sbin/sshd -D"
+    ports:
+      - "2223:22"
+    environment:
+      - ROOT_PASSWORD=password2
+
+  victim3:
+    image: alpine:latest
+    container_name: victim3
+    command: sh -c "apk add --no-cache openssh && ssh-keygen -A && /usr/sbin/sshd -D"
+    ports:
+      - "2224:22"
+    environment:
+      - ROOT_PASSWORD=password3
